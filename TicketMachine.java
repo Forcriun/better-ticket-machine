@@ -102,8 +102,14 @@ public class TicketMachine
     public int emptyMachine()
     {
         int totalMoney = balance + total;
+        if (balance == 0){
         balance = 0;
         total = 0;
+        }
+        else{
+            System.out.println("Error, hay una operación en curso.");
+            totalMoney = -1;
+        }
         return totalMoney;
     }
 }
