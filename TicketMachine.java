@@ -19,15 +19,18 @@ public class TicketMachine
     private int total;
     // Campo de tipo de billete
     private boolean prize;
+    // Maximum number of tickets allowed.
+    private int maxTicket;
 
     /**
      * Create a machine that issues tickets of the given price and bonus tickets
      * when selected.
      */
-    public TicketMachine(int cost, boolean bonus)
+    public TicketMachine(int cost, boolean bonus, int maximum)
     {
         price = cost;
         prize = bonus;
+        maxTicket = maximum;
         balance = 0;
         total = 0;
     }
@@ -55,8 +58,11 @@ public class TicketMachine
      */
     public void insertMoney(int amount)
     {
-        if(amount > 0) {
+        if(amount > 0 & maxTicket > 0) {
             balance = balance + amount;
+        }
+        else if(maxTicket == 0){
+            System.out.println("Se ha alcanzado el maximo de billetes permitido");
         }
         else {
             System.out.println("Use a positive amount rather than: " + amount);
@@ -90,7 +96,7 @@ public class TicketMachine
             // Reduce the balance by the prince.
             balance = balance - price;
         }
-        else if(balance >= price) {
+        else if(balance >= price & maxTicket > 0) {
             // Simulate the printing of a ticket.
             System.out.println("##################");
             System.out.println("# The BlueJ Line");
@@ -98,7 +104,9 @@ public class TicketMachine
             System.out.println("# " + price + " cents.");
             System.out.println("##################");
             System.out.println();
-
+            
+            //Update the total printed tickets.
+            maxTicket -= 1;
             // Update the total collected with the price.
             total = total + price;
             // Reduce the balance by the prince.
