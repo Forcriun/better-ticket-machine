@@ -17,17 +17,21 @@ public class TicketMachine
     private int balance;
     // The total amount of money collected by this machine.
     private int total;
+    // Campo de tipo de billete
+    private boolean prize;
 
     /**
-     * Create a machine that issues tickets of the given price.
+     * Create a machine that issues tickets of the given price and bonus tickets
+     * when selected.
      */
-    public TicketMachine(int cost)
+    public TicketMachine(int cost, boolean bonus)
     {
         price = cost;
+        prize = bonus;
         balance = 0;
         total = 0;
     }
-
+    
     /**
      * @Return The price of a ticket.
      */
@@ -61,12 +65,32 @@ public class TicketMachine
 
     /**
      * Print a ticket if enough money has been inserted, and
-     * reduce the current balance by the ticket price. Print
-     * an error message if more money is required.
+     * reduce the current balance by the ticket price.
+     * Print a bonus ticket when selected the correct type of machine.
+     * Print an error message if more money is required.
      */
     public void printTicket()
     {
-        if(balance >= price) {
+        if(balance >= price & prize == true) {
+                        // Simulate the printing of a ticket with an additional bonus ticket
+            System.out.println("##################");
+            System.out.println("# The BlueJ Line");
+            System.out.println("# Ticket");
+            System.out.println("# " + price + " cents.");
+            System.out.println("##################");
+            System.out.println();
+            System.out.println("##################");
+            System.out.println("# The BlueJ Line");
+            System.out.println("# Bonus Ticket");
+            System.out.println("##################");
+            System.out.println();
+
+            // Update the total collected with the price.
+            total = total + price;
+            // Reduce the balance by the prince.
+            balance = balance - price;
+        }
+        else if(balance >= price) {
             // Simulate the printing of a ticket.
             System.out.println("##################");
             System.out.println("# The BlueJ Line");
@@ -105,14 +129,13 @@ public class TicketMachine
      */
     public int emptyMachine()
     {
-        int totalMoney = balance + total;
+        int totalMoney = -1;
         if (balance == 0){
-            balance = 0;
+            totalMoney = balance + total;
             total = 0;
         }
         else{
             System.out.println("Error, hay una operación en curso.");
-            totalMoney = -1;
         }
         return totalMoney;
     }
