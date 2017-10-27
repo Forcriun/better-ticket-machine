@@ -98,13 +98,17 @@ public class TicketMachine
         balance = 0;
         return amountToRefund;
     }
-    
+
+    /**
+     * Método que vacia la recaudacion de la maquina siempre que
+     * no haya una operacion en curso
+     */
     public int emptyMachine()
     {
         int totalMoney = balance + total;
         if (balance == 0){
-        balance = 0;
-        total = 0;
+            balance = 0;
+            total = 0;
         }
         else{
             System.out.println("Error, hay una operación en curso.");
