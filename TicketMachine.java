@@ -34,7 +34,7 @@ public class TicketMachine
         balance = 0;
         total = 0;
     }
-    
+
     /**
      * @Return The price of a ticket.
      */
@@ -78,7 +78,7 @@ public class TicketMachine
     public void printTicket()
     {
         if(balance >= price & prize == true) {
-                        // Simulate the printing of a ticket with an additional bonus ticket
+            // Simulate the printing of a ticket with an additional bonus ticket
             System.out.println("##################");
             System.out.println("# The BlueJ Line");
             System.out.println("# Ticket");
@@ -104,7 +104,7 @@ public class TicketMachine
             System.out.println("# " + price + " cents.");
             System.out.println("##################");
             System.out.println();
-            
+
             //Update the total printed tickets.
             maxTicket -= 1;
             // Update the total collected with the price.
